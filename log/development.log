@@ -1,0 +1,595 @@
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateJournalEntries (20230407212120)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "journal_entries" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "body" text, "date" date, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230407212120"]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2023-04-07 21:21:57.491359"], ["updated_at", "2023-04-07 21:21:57.491359"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/journal_entries" for ::1 at 2023-04-07 18:26:38 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+AbstractController::ActionNotFound (The action 'create' could not be found for JournalEntriesController):
+  
+actionpack (7.0.4) lib/abstract_controller/base.rb:146:in `process'
+actionpack (7.0.4) lib/action_controller/metal.rb:188:in `dispatch'
+actionpack (7.0.4) lib/action_controller/metal.rb:251:in `dispatch'
+actionpack (7.0.4) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.0.4) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.0.4) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (7.0.4) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (7.0.4) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.0.4) lib/action_dispatch/routing/route_set.rb:852:in `call'
+rack (2.2.5) lib/rack/etag.rb:27:in `call'
+rack (2.2.5) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.5) lib/rack/head.rb:12:in `call'
+activerecord (7.0.4) lib/active_record/migration.rb:603:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.5) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.5) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.4) lib/rails/engine.rb:530:in `call'
+puma (5.6.4) lib/puma/configuration.rb:252:in `call'
+puma (5.6.4) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.4) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.4) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.4) lib/puma/server.rb:441:in `process_client'
+puma (5.6.4) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started POST "/journal_entries" for ::1 at 2023-04-07 18:27:10 -0300
+Processing by JournalEntriesController#create as */*
+Completed 204 No Content in 14ms (Allocations: 2966)
+
+
+Started POST "/journal_entries" for ::1 at 2023-04-07 18:27:27 -0300
+Processing by JournalEntriesController#create as */*
+Completed 200 OK in 1ms (Views: 1.2ms | Allocations: 247)
+
+
+Started POST "/journal_entries" for ::1 at 2023-04-07 18:28:01 -0300
+Processing by JournalEntriesController#create as */*
+Completed 200 OK in 0ms (Views: 0.2ms | Allocations: 259)
+
+
+Started POST "/journal_entries" for ::1 at 2023-04-07 18:28:38 -0300
+Processing by JournalEntriesController#create as */*
+Completed 200 OK in 0ms (Views: 0.1ms | Allocations: 229)
+
+
+Started POST "/journal_entries" for ::1 at 2023-04-07 18:28:51 -0300
+Processing by JournalEntriesController#create as */*
+  Parameters: {"title"=>"teste", "journal_entry"=>{"title"=>"teste"}}
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 1.0ms | Allocations: 141)
+
+
+Started POST "/journal_entries" for ::1 at 2023-04-07 18:28:56 -0300
+Processing by JournalEntriesController#create as */*
+  Parameters: {"title"=>"teste", "journal_entry"=>{"title"=>"teste"}}
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.5ms | Allocations: 228)
+
+
+Started POST "/journal_entries" for ::1 at 2023-04-07 18:29:01 -0300
+Processing by JournalEntriesController#create as */*
+  Parameters: {"title"=>"teste", "journal_entry"=>{"title"=>"teste"}}
+Completed 200 OK in 6ms (Views: 5.7ms | ActiveRecord: 0.6ms | Allocations: 211)
+
+
+Started POST "/journal_entries" for ::1 at 2023-04-07 18:30:45 -0300
+Processing by JournalEntriesController#create as */*
+  Parameters: {"title"=>"teste", "journal_entry"=>{"title"=>"teste"}}
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.5ms | Allocations: 201)
+
+
+  
+ArgumentError (wrong number of arguments (given 3, expected 0..1)):
+  
+app/controllers/journal_entries_controller.rb:6:in `create'
+Started POST "/journal_entries" for ::1 at 2023-04-07 18:30:52 -0300
+Error occurred while parsing request parameters.
+Contents:
+
+{
+    "title": "teste",
+    "title": "teste",
+}
+Processing by JournalEntriesController#create as */*
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 122)
+
+
+  
+ActionDispatch::Http::Parameters::ParseError (Error occurred while parsing request parameters):
+  
+app/controllers/journal_entries_controller.rb:3:in `create'
+Started POST "/journal_entries" for ::1 at 2023-04-07 18:31:06 -0300
+Processing by JournalEntriesController#create as */*
+  Parameters: {"title"=>"teste", "body"=>"teste", "date"=>"teste", "journal_entry"=>{"title"=>"teste", "body"=>"teste", "date"=>"teste"}}
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms | Allocations: 102)
+
+
+  
+ArgumentError (wrong number of arguments (given 3, expected 0..1)):
+  
+app/controllers/journal_entries_controller.rb:6:in `create'
+Started POST "/journal_entries" for ::1 at 2023-04-07 18:32:02 -0300
+Processing by JournalEntriesController#create as */*
+  Parameters: {"title"=>"teste", "body"=>"teste", "date"=>"teste", "journal_entry"=>{"title"=>"teste", "body"=>"teste", "date"=>"teste"}}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 1.3ms | Allocations: 1177)
+
+
+  
+NoMethodError (undefined method `requre' for #<ActionController::Parameters {"title"=>"teste", "body"=>"teste", "date"=>"teste", "controller"=>"journal_entries", "action"=>"create", "journal_entry"=>{"title"=>"teste", "body"=>"teste", "date"=>"teste"}} permitted: false>
+
+  params.requre(:journal_entry).permit(:title, :body, :date)
+        ^^^^^^^
+Did you mean?  require
+               required):
+  
+app/controllers/journal_entries_controller.rb:9:in `journal_entry_params'
+app/controllers/journal_entries_controller.rb:3:in `create'
+Started POST "/journal_entries" for ::1 at 2023-04-07 18:32:11 -0300
+Processing by JournalEntriesController#create as */*
+  Parameters: {"title"=>"teste", "body"=>"teste", "date"=>"teste", "journal_entry"=>{"title"=>"teste", "body"=>"teste", "date"=>"teste"}}
+Completed 200 OK in 13ms (Views: 2.0ms | ActiveRecord: 0.9ms | Allocations: 4786)
+
+
+Started POST "/journal_entries" for ::1 at 2023-04-07 18:32:33 -0300
+Processing by JournalEntriesController#create as */*
+  Parameters: {"title"=>"teste", "body"=>"teste", "date"=>"01/01/2020", "journal_entry"=>{"title"=>"teste", "body"=>"teste", "date"=>"01/01/2020"}}
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.0ms | Allocations: 274)
+
+
+Started POST "/journal_entries" for ::1 at 2023-04-07 18:33:53 -0300
+  
+SyntaxError (/Users/user/development/studies/rails/side_projects/journal/app/controllers/journal_entries_controller.rb:13: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/journal_entries_controller.rb:13: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/journal_entries_controller.rb:13: syntax error, unexpected end-of-input, expecting `end'
+Started POST "/journal_entries" for ::1 at 2023-04-07 18:34:30 -0300
+Processing by JournalEntriesController#create as */*
+  Parameters: {"title"=>"teste", "body"=>"teste", "date"=>"01/01/2020", "journal_entry"=>{"title"=>"teste", "body"=>"teste", "date"=>"01/01/2020"}}
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/journal_entries_controller.rb:4:in `create'
+  [1m[36mJournalEntry Create (1.0ms)[0m  [1m[32mINSERT INTO "journal_entries" ("title", "body", "date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "teste"], ["body", "teste"], ["date", "2020-01-01"], ["created_at", "2023-04-07 21:34:30.606543"], ["updated_at", "2023-04-07 21:34:30.606543"]]
+  ↳ app/controllers/journal_entries_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/journal_entries_controller.rb:4:in `create'
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 2.5ms | Allocations: 4031)
+
+
+  
+ArgumentError (Unrecognized status code :create):
+  
+app/controllers/journal_entries_controller.rb:5:in `create'
+Started POST "/journal_entries" for ::1 at 2023-04-07 18:34:41 -0300
+Processing by JournalEntriesController#create as */*
+  Parameters: {"title"=>"teste", "body"=>"teste", "date"=>"01/01/2020", "journal_entry"=>{"title"=>"teste", "body"=>"teste", "date"=>"01/01/2020"}}
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/journal_entries_controller.rb:4:in `create'
+  [1m[36mJournalEntry Create (0.3ms)[0m  [1m[32mINSERT INTO "journal_entries" ("title", "body", "date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "teste"], ["body", "teste"], ["date", "2020-01-01"], ["created_at", "2023-04-07 21:34:41.316205"], ["updated_at", "2023-04-07 21:34:41.316205"]]
+  ↳ app/controllers/journal_entries_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/journal_entries_controller.rb:4:in `create'
+Completed 201 Created in 9ms (Views: 1.3ms | ActiveRecord: 2.5ms | Allocations: 3693)
+
+
+Started POST "/journal_entries" for ::1 at 2023-04-07 18:34:43 -0300
+Processing by JournalEntriesController#create as */*
+  Parameters: {"title"=>"teste", "body"=>"teste", "date"=>"01/01/2020", "journal_entry"=>{"title"=>"teste", "body"=>"teste", "date"=>"01/01/2020"}}
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/journal_entries_controller.rb:4:in `create'
+  [1m[36mJournalEntry Create (0.3ms)[0m  [1m[32mINSERT INTO "journal_entries" ("title", "body", "date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "teste"], ["body", "teste"], ["date", "2020-01-01"], ["created_at", "2023-04-07 21:34:43.221434"], ["updated_at", "2023-04-07 21:34:43.221434"]]
+  ↳ app/controllers/journal_entries_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/journal_entries_controller.rb:4:in `create'
+Completed 201 Created in 3ms (Views: 0.2ms | ActiveRecord: 1.1ms | Allocations: 1902)
+
+
+Started POST "/journal_entries" for ::1 at 2023-04-07 18:34:44 -0300
+Processing by JournalEntriesController#create as */*
+  Parameters: {"title"=>"teste", "body"=>"teste", "date"=>"01/01/2020", "journal_entry"=>{"title"=>"teste", "body"=>"teste", "date"=>"01/01/2020"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/journal_entries_controller.rb:4:in `create'
+  [1m[36mJournalEntry Create (0.5ms)[0m  [1m[32mINSERT INTO "journal_entries" ("title", "body", "date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "teste"], ["body", "teste"], ["date", "2020-01-01"], ["created_at", "2023-04-07 21:34:44.100396"], ["updated_at", "2023-04-07 21:34:44.100396"]]
+  ↳ app/controllers/journal_entries_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/journal_entries_controller.rb:4:in `create'
+Completed 201 Created in 7ms (Views: 0.3ms | ActiveRecord: 2.6ms | Allocations: 1902)
+
+
+Started POST "/journal_entries" for ::1 at 2023-04-07 18:34:44 -0300
+Processing by JournalEntriesController#create as */*
+  Parameters: {"title"=>"teste", "body"=>"teste", "date"=>"01/01/2020", "journal_entry"=>{"title"=>"teste", "body"=>"teste", "date"=>"01/01/2020"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/journal_entries_controller.rb:4:in `create'
+  [1m[36mJournalEntry Create (0.4ms)[0m  [1m[32mINSERT INTO "journal_entries" ("title", "body", "date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "teste"], ["body", "teste"], ["date", "2020-01-01"], ["created_at", "2023-04-07 21:34:44.762649"], ["updated_at", "2023-04-07 21:34:44.762649"]]
+  ↳ app/controllers/journal_entries_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/journal_entries_controller.rb:4:in `create'
+Completed 201 Created in 4ms (Views: 0.3ms | ActiveRecord: 1.4ms | Allocations: 1902)
+
+
+Started POST "/journal_entries" for ::1 at 2023-04-07 18:34:45 -0300
+Processing by JournalEntriesController#create as */*
+  Parameters: {"title"=>"teste", "body"=>"teste", "date"=>"01/01/2020", "journal_entry"=>{"title"=>"teste", "body"=>"teste", "date"=>"01/01/2020"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/journal_entries_controller.rb:4:in `create'
+  [1m[36mJournalEntry Create (0.5ms)[0m  [1m[32mINSERT INTO "journal_entries" ("title", "body", "date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "teste"], ["body", "teste"], ["date", "2020-01-01"], ["created_at", "2023-04-07 21:34:45.448668"], ["updated_at", "2023-04-07 21:34:45.448668"]]
+  ↳ app/controllers/journal_entries_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (8.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/journal_entries_controller.rb:4:in `create'
+Completed 201 Created in 12ms (Views: 0.3ms | ActiveRecord: 8.5ms | Allocations: 1900)
+
+
+Started GET "/journal_entries" for ::1 at 2023-04-07 18:36:23 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/journal_entries"):
+  
+Started GET "/journal_entries" for ::1 at 2023-04-07 18:36:31 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/journal_entries"):
+  
+Started GET "/journal_entries" for ::1 at 2023-04-07 18:37:26 -0300
+Processing by JournalEntriesController#index as */*
+  [1m[36mJournalEntry Load (0.1ms)[0m  [1m[34mSELECT "journal_entries".* FROM "journal_entries"[0m
+  ↳ app/controllers/journal_entries_controller.rb:13:in `index'
+Completed 200 OK in 6ms (Views: 4.3ms | ActiveRecord: 0.7ms | Allocations: 4429)
+
+
+Started GET "/journal_entries" for ::1 at 2023-04-07 18:51:13 -0300
+Processing by JournalEntriesController#index as */*
+  [1m[36mJournalEntry Load (0.4ms)[0m  [1m[34mSELECT "journal_entries".* FROM "journal_entries"[0m
+  ↳ app/controllers/journal_entries_controller.rb:13:in `index'
+Completed 200 OK in 7ms (Views: 5.4ms | ActiveRecord: 0.7ms | Allocations: 3990)
+
+
+Started GET "/journal_entries/by_date" for ::1 at 2023-04-07 18:51:35 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/journal_entries/by_date"):
+  
+Started GET "/journal_entries/by_date" for ::1 at 2023-04-07 18:52:03 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/journal_entries/by_date"):
+  
+Started GET "/journal_entries/by_date" for ::1 at 2023-04-07 18:52:21 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/journal_entries/by_date"):
+  
+Started GET "/journal_entries/by_date" for ::1 at 2023-04-07 18:53:54 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/journal_entries/by_date"):
+  
+Started GET "/journal_entries/1/by_date" for ::1 at 2023-04-07 18:55:06 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/journal_entries/1/by_date"):
+  
+Started GET "/journal_entries/by_date" for ::1 at 2023-04-07 18:55:09 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/journal_entries/by_date"):
+  
+Started GET "/journal_entries/1by_date" for ::1 at 2023-04-07 18:55:12 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/journal_entries/1by_date"):
+  
+Started GET "/journal_entries/by_date" for ::1 at 2023-04-07 18:55:13 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/journal_entries/by_date"):
+  
+Started GET "/journal_entries/index" for ::1 at 2023-04-07 18:55:20 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/journal_entries/index"):
+  
+Started GET "/journal_entries/by_date" for ::1 at 2023-04-07 18:55:25 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/journal_entries/by_date"):
+  
+Started GET "/journal_entries/" for ::1 at 2023-04-07 18:55:29 -0300
+  
+SyntaxError (/Users/user/development/studies/rails/side_projects/journal/app/controllers/journal_entries_controller.rb:17: syntax error, unexpected string literal, expecting `end'
+    render :json "deu certo"
+                 ^
+):
+  
+app/controllers/journal_entries_controller.rb:17: syntax error, unexpected string literal, expecting `end'
+app/controllers/journal_entries_controller.rb:17: syntax error, unexpected string literal, expecting `end'
+Started GET "/journal_entries/" for ::1 at 2023-04-07 18:55:52 -0300
+Processing by JournalEntriesController#index as */*
+  Parameters: {"date"=>"10/10/2022", "journal_entry"=>{"date"=>"10/10/2022"}}
+  [1m[36mJournalEntry Load (0.2ms)[0m  [1m[34mSELECT "journal_entries".* FROM "journal_entries"[0m
+  ↳ app/controllers/journal_entries_controller.rb:13:in `index'
+Completed 200 OK in 4ms (Views: 3.2ms | ActiveRecord: 0.9ms | Allocations: 3229)
+
+
+Started GET "/journal_entries/" for ::1 at 2023-04-07 18:56:03 -0300
+Processing by JournalEntriesController#index as */*
+  Parameters: {"date"=>"10/10/2022", "journal_entry"=>{"date"=>"10/10/2022"}}
+  [1m[36mJournalEntry Load (0.1ms)[0m  [1m[34mSELECT "journal_entries".* FROM "journal_entries"[0m
+  ↳ app/controllers/journal_entries_controller.rb:13:in `index'
+Completed 200 OK in 4ms (Views: 2.9ms | ActiveRecord: 0.8ms | Allocations: 3173)
+
+
+Started GET "/journal_entries/" for ::1 at 2023-04-07 18:56:17 -0300
+  
+SyntaxError (/Users/user/development/studies/rails/side_projects/journal/app/controllers/journal_entries_controller.rb:17: syntax error, unexpected label, expecting `end'
+    render json: message: "teste"
+                 ^~~~~~~~
+):
+  
+app/controllers/journal_entries_controller.rb:17: syntax error, unexpected label, expecting `end'
+app/controllers/journal_entries_controller.rb:17: syntax error, unexpected label, expecting `end'
+Started GET "/journal_entries/" for ::1 at 2023-04-07 18:56:55 -0300
+Processing by JournalEntriesController#index as */*
+  Parameters: {"date"=>"10/10/2022", "journal_entry"=>{"date"=>"10/10/2022"}}
+  [1m[36mJournalEntry Load (0.1ms)[0m  [1m[34mSELECT "journal_entries".* FROM "journal_entries"[0m
+  ↳ app/controllers/journal_entries_controller.rb:13:in `index'
+Completed 200 OK in 3ms (Views: 2.9ms | ActiveRecord: 0.6ms | Allocations: 3172)
+
+
+Started GET "/journal_entries/" for ::1 at 2023-04-07 18:57:14 -0300
+Processing by JournalEntriesController#index as */*
+  Parameters: {"date"=>"10/10/2022", "journal_entry"=>{"date"=>"10/10/2022"}}
+  [1m[36mJournalEntry Load (0.1ms)[0m  [1m[34mSELECT "journal_entries".* FROM "journal_entries"[0m
+  ↳ app/controllers/journal_entries_controller.rb:13:in `index'
+Completed 200 OK in 3ms (Views: 2.8ms | ActiveRecord: 0.7ms | Allocations: 3191)
+
+
+Started GET "/journal_entries/test" for ::1 at 2023-04-07 18:57:20 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/journal_entries/test"):
+  
+Started GET "/journal_entries/test" for ::1 at 2023-04-07 18:57:34 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/journal_entries/test"):
+  
+Started GET "/journal_entries/test" for ::1 at 2023-04-07 18:59:01 -0300
+  
+SyntaxError (/Users/user/development/studies/rails/side_projects/journal/config/routes.rb:5: syntax error, unexpected `end', expecting end-of-input):
+  
+config/routes.rb:5: syntax error, unexpected `end', expecting end-of-input
+config/routes.rb:5: syntax error, unexpected `end', expecting end-of-input
+Started GET "/journal_entries/test" for ::1 at 2023-04-07 18:59:22 -0300
+  
+AbstractController::ActionNotFound (The action 'show' could not be found for JournalEntriesController):
+  
+actionpack (7.0.4) lib/abstract_controller/base.rb:146:in `process'
+actionpack (7.0.4) lib/action_controller/metal.rb:188:in `dispatch'
+actionpack (7.0.4) lib/action_controller/metal.rb:251:in `dispatch'
+actionpack (7.0.4) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (7.0.4) lib/action_dispatch/routing/route_set.rb:32:in `serve'
+actionpack (7.0.4) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (7.0.4) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (7.0.4) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.0.4) lib/action_dispatch/routing/route_set.rb:852:in `call'
+rack (2.2.5) lib/rack/etag.rb:27:in `call'
+rack (2.2.5) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.5) lib/rack/head.rb:12:in `call'
+activerecord (7.0.4) lib/active_record/migration.rb:603:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.5) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.5) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.4) lib/rails/engine.rb:530:in `call'
+puma (5.6.4) lib/puma/configuration.rb:252:in `call'
+puma (5.6.4) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.4) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.4) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.4) lib/puma/server.rb:441:in `process_client'
+puma (5.6.4) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/journal_entries/test" for ::1 at 2023-04-07 18:59:54 -0300
+Processing by JournalEntriesController#show as */*
+  Parameters: {"date"=>"10/10/2022", "id"=>"test", "journal_entry"=>{"date"=>"10/10/2022"}}
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.6ms | Allocations: 235)
+
+
+Started GET "/journal_entries/test" for ::1 at 2023-04-07 18:59:56 -0300
+Processing by JournalEntriesController#show as */*
+  Parameters: {"date"=>"10/10/2022", "id"=>"test", "journal_entry"=>{"date"=>"10/10/2022"}}
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 95)
+
+
+Started GET "/journal_entries/test" for ::1 at 2023-04-07 19:00:19 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/journal_entries/test"):
+  
+Started GET "/journal_entries/test" for ::1 at 2023-04-07 19:02:33 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/journal_entries/test"):
+  
+Started GET "/journal_entries/test" for ::1 at 2023-04-07 19:03:28 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/journal_entries/test"):
+  
+Started GET "/journal_entries/test" for ::1 at 2023-04-07 19:04:49 -0300
+Processing by JournalEntriesController#test as */*
+  Parameters: {"date"=>"10/10/2022", "journal_entry"=>{"date"=>"10/10/2022"}}
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.6ms | Allocations: 234)
+
+
+Started GET "/test" for ::1 at 2023-04-07 19:04:59 -0300
+Processing by JournalEntriesController#test as */*
+  Parameters: {"date"=>"10/10/2022", "journal_entry"=>{"date"=>"10/10/2022"}}
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.6ms | Allocations: 234)
+
+
+Started GET "/date" for ::1 at 2023-04-07 19:07:29 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/date"):
+  
+Started GET "/journal_entries/date" for ::1 at 2023-04-07 19:07:38 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/journal_entries/date"):
+  
+Started GET "/journal_entries/date" for ::1 at 2023-04-07 19:07:56 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/journal_entries/date"):
+  
+Started GET "/journal_entries/test" for ::1 at 2023-04-07 19:08:26 -0300
+  
+ArgumentError (Invalid route name, already in use: 'journal_entries_by_date' 
+You may have defined two routes with the same name using the `:as` option, or you may be overriding a route already defined by a resource with the same naming. For the latter, you can restrict the routes created with `resources` as explained here: 
+https://guides.rubyonrails.org/routing.html#restricting-the-routes-created):
+  
+config/routes.rb:4:in `block in <main>'
+config/routes.rb:1:in `<main>'
+Started GET "/journal_entries/test" for ::1 at 2023-04-07 19:08:34 -0300
+Processing by JournalEntriesController#by_date as */*
+  Parameters: {"date"=>"10/10/2022", "journal_entry"=>{"date"=>"10/10/2022"}}
+  [1m[36mJournalEntry Load (0.9ms)[0m  [1m[34mSELECT "journal_entries".* FROM "journal_entries" WHERE "journal_entries"."date" = ?[0m  [["date", "2022-10-10"]]
+  ↳ app/controllers/journal_entries_controller.rb:18:in `by_date'
+Completed 200 OK in 4ms (Views: 3.1ms | ActiveRecord: 1.4ms | Allocations: 1502)
+
+
+Started GET "/journal_entries/date" for ::1 at 2023-04-07 19:08:38 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/journal_entries/date"):
+  
+Started GET "/journal_entries/date?date=01/01/2020" for ::1 at 2023-04-07 19:09:06 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/journal_entries/date"):
+  
+Started GET "/journal_entries/date?date=01/01/2020" for ::1 at 2023-04-07 19:09:08 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/journal_entries/date"):
+  
+Started GET "/journal_entries/date/01-01-2000" for ::1 at 2023-04-07 19:09:41 -0300
+Processing by JournalEntriesController#by_date as */*
+  Parameters: {"date"=>"01-01-2000"}
+  [1m[36mJournalEntry Load (0.1ms)[0m  [1m[34mSELECT "journal_entries".* FROM "journal_entries" WHERE "journal_entries"."date" = ?[0m  [["date", "2000-01-01"]]
+  ↳ app/controllers/journal_entries_controller.rb:18:in `by_date'
+Completed 200 OK in 4ms (Views: 1.1ms | ActiveRecord: 0.4ms | Allocations: 2266)
+
+
+Started GET "/journal_entries/date?date=01/01/2020" for ::1 at 2023-04-07 19:10:01 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/journal_entries/date"):
+  
+Started GET "/journal_entries" for ::1 at 2023-04-07 19:10:09 -0300
+Processing by JournalEntriesController#index as */*
+  [1m[36mJournalEntry Load (0.2ms)[0m  [1m[34mSELECT "journal_entries".* FROM "journal_entries"[0m
+  ↳ app/controllers/journal_entries_controller.rb:13:in `index'
+Completed 200 OK in 7ms (Views: 5.8ms | ActiveRecord: 0.5ms | Allocations: 2999)
+
+
+Started GET "/journal_entries/date?date=2020-01-01" for ::1 at 2023-04-07 19:10:21 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/journal_entries/date"):
+  
+Started GET "/journal_entries/date/2020-01-01" for ::1 at 2023-04-07 19:10:29 -0300
+Processing by JournalEntriesController#by_date as */*
+  Parameters: {"date"=>"2020-01-01"}
+  [1m[36mJournalEntry Load (0.1ms)[0m  [1m[34mSELECT "journal_entries".* FROM "journal_entries" WHERE "journal_entries"."date" = ?[0m  [["date", "2020-01-01"]]
+  ↳ app/controllers/journal_entries_controller.rb:18:in `by_date'
+Completed 200 OK in 4ms (Views: 3.0ms | ActiveRecord: 0.1ms | Allocations: 1502)
+
+
+Started POST "/journal_entries" for ::1 at 2023-04-07 19:10:48 -0300
+Processing by JournalEntriesController#create as */*
+  Parameters: {"title"=>"teste", "body"=>"teste", "date"=>"7/4/2023", "journal_entry"=>{"title"=>"teste", "body"=>"teste", "date"=>"7/4/2023"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/journal_entries_controller.rb:4:in `create'
+  [1m[36mJournalEntry Create (1.2ms)[0m  [1m[32mINSERT INTO "journal_entries" ("title", "body", "date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "teste"], ["body", "teste"], ["date", "2023-04-07"], ["created_at", "2023-04-07 22:10:48.168876"], ["updated_at", "2023-04-07 22:10:48.168876"]]
+  ↳ app/controllers/journal_entries_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/journal_entries_controller.rb:4:in `create'
+Completed 201 Created in 6ms (Views: 0.3ms | ActiveRecord: 2.1ms | Allocations: 2055)
+
+
+Started GET "/journal_entries/date/7-4-2023" for ::1 at 2023-04-07 19:10:58 -0300
+Processing by JournalEntriesController#by_date as */*
+  Parameters: {"date"=>"7-4-2023"}
+  [1m[36mJournalEntry Load (0.1ms)[0m  [1m[34mSELECT "journal_entries".* FROM "journal_entries" WHERE "journal_entries"."date" = ?[0m  [["date", "2023-04-07"]]
+  ↳ app/controllers/journal_entries_controller.rb:18:in `by_date'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.1ms | Allocations: 863)
+
+
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTruncate Tables (1.9ms)[0m  [1m[31mDELETE FROM "journal_entries"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+Started GET "/journal_entries/date/7-4-2023" for ::1 at 2023-04-07 19:12:02 -0300
+Processing by JournalEntriesController#by_date as */*
+  Parameters: {"date"=>"7-4-2023"}
+  [1m[36mJournalEntry Load (0.1ms)[0m  [1m[34mSELECT "journal_entries".* FROM "journal_entries" WHERE "journal_entries"."date" = ?[0m  [["date", "2023-04-07"]]
+  ↳ app/controllers/journal_entries_controller.rb:18:in `by_date'
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.1ms | Allocations: 727)
+
+
+Started POST "/journal_entries" for ::1 at 2023-04-07 19:12:07 -0300
+Processing by JournalEntriesController#create as */*
+  Parameters: {"title"=>"teste", "body"=>"teste", "date"=>"7/4/2023", "journal_entry"=>{"title"=>"teste", "body"=>"teste", "date"=>"7/4/2023"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/journal_entries_controller.rb:4:in `create'
+  [1m[36mJournalEntry Create (0.3ms)[0m  [1m[32mINSERT INTO "journal_entries" ("title", "body", "date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "teste"], ["body", "teste"], ["date", "2023-04-07"], ["created_at", "2023-04-07 22:12:07.058910"], ["updated_at", "2023-04-07 22:12:07.058910"]]
+  ↳ app/controllers/journal_entries_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/journal_entries_controller.rb:4:in `create'
+Completed 201 Created in 5ms (Views: 0.2ms | ActiveRecord: 1.6ms | Allocations: 1899)
+
+
+Started GET "/journal_entries/date/7-4-2023" for ::1 at 2023-04-07 19:12:10 -0300
+Processing by JournalEntriesController#by_date as */*
+  Parameters: {"date"=>"7-4-2023"}
+  [1m[36mJournalEntry Load (0.1ms)[0m  [1m[34mSELECT "journal_entries".* FROM "journal_entries" WHERE "journal_entries"."date" = ?[0m  [["date", "2023-04-07"]]
+  ↳ app/controllers/journal_entries_controller.rb:18:in `by_date'
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.1ms | Allocations: 863)
+
+
+Started GET "/journal_entries" for ::1 at 2023-04-07 19:12:12 -0300
+Processing by JournalEntriesController#index as */*
+  [1m[36mJournalEntry Load (0.1ms)[0m  [1m[34mSELECT "journal_entries".* FROM "journal_entries"[0m
+  ↳ app/controllers/journal_entries_controller.rb:13:in `index'
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.1ms | Allocations: 794)
+
+
