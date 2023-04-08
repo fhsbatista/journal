@@ -593,3 +593,40 @@ Processing by JournalEntriesController#index as */*
 Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.1ms | Allocations: 794)
 
 
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE DATABASE "db/development"."sqlite3" ENCODING = 'utf8'[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE DATABASE "db/development"."sqlite3" ENCODING = 'utf8'[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE DATABASE "db/development"."sqlite3" ENCODING = 'utf8'[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE DATABASE "db/development"."sqlite3" ENCODING = 'utf8'[0m
+  [1m[35m (430.7ms)[0m  [1m[35mCREATE DATABASE "db/development-sqlite3" ENCODING = 'utf8'[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE DATABASE "db/test"."sqlite3" ENCODING = 'utf8'[0m
+  [1m[35m (18.2ms)[0m  [1m[35mCREATE DATABASE "db/test"."sqlite3" ENCODING = 'utf8'[0m
+  [1m[35m (366.8ms)[0m  [1m[35mCREATE DATABASE "db/development-postgres" ENCODING = 'utf8'[0m
+  [1m[35m (111.8ms)[0m  [1m[35mCREATE DATABASE "db/test-postgres" ENCODING = 'utf8'[0m
+  [1m[35m (36.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (28.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (40.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7281852851759467800)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateJournalEntries (20230407212120)
+  [1m[36mTRANSACTION (40.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE TABLE "journal_entries" ("id" bigserial primary key, "title" character varying, "body" text, "date" date, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (43.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20230407212120"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (33.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2023-04-08 00:40:53.244564"], ["updated_at", "2023-04-08 00:40:53.244564"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(7281852851759467800)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/journal_entries" for ::1 at 2023-04-07 21:41:48 -0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by JournalEntriesController#create as */*
+  Parameters: {"title"=>"First entry", "body"=>"This is the first entry on postgres", "date"=>"7/4/2023", "journal_entry"=>{"title"=>"First entry", "body"=>"This is the first entry on postgres", "date"=>"7/4/2023"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/journal_entries_controller.rb:4:in `create'
+  [1m[36mJournalEntry Create (26.4ms)[0m  [1m[32mINSERT INTO "journal_entries" ("title", "body", "date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["title", "First entry"], ["body", "This is the first entry on postgres"], ["date", "2023-04-07"], ["created_at", "2023-04-08 00:41:48.310507"], ["updated_at", "2023-04-08 00:41:48.310507"]]
+  ↳ app/controllers/journal_entries_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/journal_entries_controller.rb:4:in `create'
+Completed 201 Created in 56ms (Views: 1.7ms | ActiveRecord: 31.5ms | Allocations: 9839)
+
+
