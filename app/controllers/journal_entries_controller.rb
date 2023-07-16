@@ -1,4 +1,6 @@
 class JournalEntriesController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     entry = JournalEntry.new(journal_entry_params)
     if entry.save
