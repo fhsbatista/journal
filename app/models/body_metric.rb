@@ -1,0 +1,2 @@
+class BodyMetric < ApplicationRecord
+end
