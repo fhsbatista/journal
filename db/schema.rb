@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_16_124723) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_23_103847) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "body_metrics", force: :cascade do |t|
+    t.date "date"
+    t.decimal "weight"
+    t.decimal "bf"
+    t.decimal "muscle_weight"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "journal_entries", force: :cascade do |t|
     t.string "title"
