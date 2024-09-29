@@ -69,3 +69,5 @@ group :test do
 end
 
 gem "mongoid", "~> 9.0"
+
+gem "rspec-rails", "~> 7.0"
