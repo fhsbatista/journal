@@ -1,0 +1,15 @@
+development:
+  clients:
+    default:
+      database: journal
+      hosts:
+        - mongo:27017
+      options:
+        # Adicione opções aqui, se necessário
+
+test:
+  clients:
+    default:
+      database: journal
+      hosts:
+        - mongo:27017
