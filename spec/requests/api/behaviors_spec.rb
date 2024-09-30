@@ -3,15 +3,15 @@ require 'rails_helper'
 RSpec.describe Api::BehaviorsController, type: :controller do
   let!(:behavior) { Behavior.create(description: 'Test Behavior') }
 
-  fdescribe 'GET #index' do
-    fit 'returns all behaviors' do
+  describe 'GET #index' do
+    it 'returns all behaviors' do
       get :index, format: :json
       expect(response).to be_successful
       expect(JSON.parse(response.body).size).to eq(1)
     end
   end
 
-  fdescribe 'GET #show' do
+  describe 'GET #show' do
     it 'returns the behavior for a given id' do
       get :show, params: { id: behavior.id }
       expect(response).to be_successful
@@ -24,7 +24,7 @@ RSpec.describe Api::BehaviorsController, type: :controller do
     end
   end
 
-  fdescribe 'POST #create' do
+  describe 'POST #create' do
     it 'creates a new behavior' do
       expect {
         post :create, params: { behavior: { description: 'New Behavior' } }
@@ -39,7 +39,7 @@ RSpec.describe Api::BehaviorsController, type: :controller do
     end
   end
 
-  fdescribe 'PATCH #update' do
+  describe 'PATCH #update' do
     it 'updates an existing behavior' do
       patch :update, params: { id: behavior.id, behavior: { description: 'Updated Behavior' } }
       expect(response).to be_successful
@@ -52,7 +52,7 @@ RSpec.describe Api::BehaviorsController, type: :controller do
     end
   end
 
-  fdescribe 'DELETE #destroy' do
+  describe 'DELETE #destroy' do
     it 'deletes the behavior' do
       expect {
         delete :destroy, params: { id: behavior.id }
