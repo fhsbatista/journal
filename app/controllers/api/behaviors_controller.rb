@@ -1,0 +1,51 @@
+module Api
+  class BehaviorsController < ApplicationController
+    skip_before_action :verify_authenticity_token
+
+    def index
+      @behaviors = Behavior.all
+      render json: @behaviors
+    end
+
+    def show
+      @behavior = Behavior.find(params[:id])
+      render json: @behavior
+    rescue Mongoid::Errors::DocumentNotFound
+      render json: { error: 'Behavior not found' }, status: :not_found
+    end
+
+    def create
+      @behavior = Behavior.new(behavior_params)
+      if @behavior.save
+        render json: @behavior, status: :created
+      else
+        render json: @behavior.errors, status: :unprocessable_entity
+      end
+    end
+
+    def update
+      @behavior = Behavior.find(params[:id])
+      if @behavior.update(behavior_params)
+        render json: @behavior
+      else
+        render json: @behavior.errors, status: :unprocessable_entity
+      end
+    rescue Mongoid::Errors::DocumentNotFound
+      render json: { error: 'Behavior not found' }, status: :not_found
+    end
+
+    def destroy
+      @behavior = Behavior.find(params[:id])
+      @behavior.destroy
+      head :no_content
+    rescue Mongoid::Errors::DocumentNotFound
+      render json: { error: 'Behavior not found' }, status: :not_found
+    end
+
+    private
+
+    def behavior_params
+      params.require(:behavior).permit(:description)
+    end
+  end
+end
