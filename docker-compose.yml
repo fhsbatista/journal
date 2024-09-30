@@ -1,13 +1,26 @@
 version: '3.8'
 
 services:
-  mongo:
+  mongo_dev:
     image: mongo:latest
-    container_name: mongo
+    container_name: mongo_dev
     ports:
-      - "27017:27017"
+      - "27017:27017" # Porta padrão do MongoDB para desenvolvimento
     volumes:
-      - mongo_data:/data/db
+      - mongo_dev_data:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: dev_db # Nome do banco de dados para desenvolvimento
+
+  mongo_test:
+    image: mongo:latest
+    container_name: mongo_test
+    ports:
+      - "27018:27017" # Porta diferente para evitar conflito
+    volumes:
+      - mongo_test_data:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: test_db # Nome do banco de dados para teste
 
 volumes:
-  mongo_data:
+  mongo_dev_data:
+  mongo_test_data:

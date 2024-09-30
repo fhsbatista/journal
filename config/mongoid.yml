@@ -1,7 +1,7 @@
 development:
   clients:
     default:
-      database: journal
+      database: dev_db
       hosts:
         - localhost:27017
       options:
@@ -10,6 +10,6 @@ development:
 test:
   clients:
     default:
-      database: journal
+      database: test_db
       hosts:
         - localhost:27017
