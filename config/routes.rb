@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :areas
     resources :scores
   end
 end

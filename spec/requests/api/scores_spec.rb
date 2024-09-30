@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Api::ScoresController, type: :controller do
-  let!(:behavior) { Behavior.create(description: 'Sample Behavior') }
+  let!(:area) { Area.create(description: 'Sample Behavior') }
+  let!(:behavior) { Behavior.create(description: 'Sample Behavior', area_id: area.id) }
   let!(:score) { Score.create(score: 5.0, description: 'Good', behavior: behavior) }
 
   describe 'GET #index' do

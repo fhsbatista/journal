@@ -1,14 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Score, type: :model do
+  let(:area) { Area.create(description: 'Sample Area') }
+
   it 'is valid with a score and a behavior' do
-    behavior = Behavior.new(description: 'Test Behavior')
+    behavior = Behavior.new(description: 'Test Behavior', area_id: area.id)
     score = Score.new(score: 10.0, description: 'Test Score', behavior: behavior)
     expect(score).to be_valid
   end
 
   it 'is invalid without a score' do
-    behavior = Behavior.new(description: 'Test Behavior')
+    behavior = Behavior.new(description: 'Test Behavior', area_id: area.id)
     score = Score.new(score: nil, behavior: behavior)
     expect(score).to be_invalid
   end
@@ -19,7 +21,7 @@ RSpec.describe Score, type: :model do
   end
 
   it 'belongs to a behavior' do
-    behavior = Behavior.new(description: 'Test Behavior')
+    behavior = Behavior.new(description: 'Test Behavior', area_id: area.id)
     score = Score.new(score: 10.0, description: 'Test Score', behavior: behavior)
 
     expect(score.behavior).to eq(behavior)

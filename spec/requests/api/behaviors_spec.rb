@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Api::BehaviorsController, type: :controller do
-  let!(:behavior) { Behavior.create(description: 'Test Behavior') }
+  let(:area) { Area.create(description: 'Sample Area') }
+  let!(:behavior) { Behavior.create(description: 'Test Behavior', area_id: area.id) }
 
   describe 'GET #index' do
     it 'returns all behaviors' do
@@ -27,7 +28,7 @@ RSpec.describe Api::BehaviorsController, type: :controller do
   describe 'POST #create' do
     it 'creates a new behavior' do
       expect {
-        post :create, params: { behavior: { description: 'New Behavior' } }
+        post :create, params: { behavior: { description: 'New Behavior', area_id: area.id } }
       }.to change(Behavior, :count).by(1)
 
       expect(response).to have_http_status(:created)

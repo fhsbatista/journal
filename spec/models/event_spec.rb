@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Event, type: :model do
-  let!(:behavior) { Behavior.create(description: 'Sample Behavior') }
+  let!(:area) { Area.create(description: 'Sample Area') }
+  let!(:behavior) { Behavior.create(description: 'Sample Behavior', area_id: area.id) }
   let!(:score) { Score.create(score: 8.0, description: 'Test Score', behavior: behavior) }
 
   it 'is valid with a behavior and calculates the score' do

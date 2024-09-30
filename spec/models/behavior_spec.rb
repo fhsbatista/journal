@@ -1,8 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Behavior, type: :model do
+  let(:area) { Area.create(description: 'Sample Area') }
+
   it 'is valid with a description' do
-    behavior = Behavior.new(description: 'Test Behavior')
+    behavior = Behavior.new(description: 'Test Behavior', area_id: area.id)
     expect(behavior).to be_valid
   end
 
@@ -12,7 +14,7 @@ RSpec.describe Behavior, type: :model do
   end
 
   it 'has many scores' do
-    behavior = Behavior.new(description: 'Test Behavior')
+    behavior = Behavior.new(description: 'Test Behavior', area_id: area.id)
     score1 = Score.new(score: 10.0, description: 'First score', behavior:)
     score2 = Score.new(score: 8.5, description: 'Second score', behavior:)
 
@@ -20,7 +22,7 @@ RSpec.describe Behavior, type: :model do
   end
 
   describe '#latest_score' do
-    let!(:behavior) { Behavior.create(description: 'Sample Behavior') }
+    let!(:behavior) { Behavior.create(description: 'Sample Behavior', area_id: area.id) }
     let!(:score1) { Score.create(score: 5.0, description: 'Good', behavior:) }
     let!(:score2) { Score.create(score: 6.0, description: 'Great', behavior:) }
 

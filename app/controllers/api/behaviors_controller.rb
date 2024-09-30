@@ -71,7 +71,7 @@ module Api
     private
 
     def behavior_params
-      params.require(:behavior).permit(:description)
+      params.require(:behavior).permit(:description, :area_id)
     end
   end
 end
