@@ -66,4 +66,30 @@ RSpec.describe Api::BehaviorsController, type: :controller do
       expect(response).to have_http_status(:not_found)
     end
   end
+
+  describe 'GET #latest_score' do
+    before do
+      Score.create(score: 4.0, description: 'old score', behavior: behavior)
+      Score.create(score: 5.0, description: 'last score', behavior: behavior)
+    end
+
+    it 'returns the latest score for the behavior' do
+      get :latest_score, params: { id: behavior.id }, format: :json
+      expect(response).to have_http_status(:success)
+      expect(JSON.parse(response.body)['score']).to eq(5.0)
+      expect(JSON.parse(response.body)['description']).to eq('last score')
+    end
+
+    it 'returns not found if no scores exist for the behavior' do
+      behavior.scores.delete_all # Remove all scores
+      get :latest_score, params: { id: behavior.id }, format: :json
+      expect(response).to have_http_status(:not_found)
+      expect(JSON.parse(response.body)['message']).to eq('No scores found for this behavior')
+    end
+
+    it 'returns not found if the behavior does not exist' do
+      get :latest_score, params: { id: 'invalid' }, format: :json
+      expect(response).to have_http_status(:not_found)
+    end
+  end
 end

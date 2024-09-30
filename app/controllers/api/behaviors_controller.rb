@@ -42,6 +42,19 @@ module Api
       render json: { error: 'Behavior not found' }, status: :not_found
     end
 
+    def latest_score
+      behavior = Behavior.find(params[:id])
+      latest_score = behavior.latest_score
+
+      if latest_score
+        render json: latest_score
+      else
+        render json: { message: 'No scores found for this behavior' }, status: :not_found
+      end
+    rescue Mongoid::Errors::DocumentNotFound
+      render json: { error: 'Behavior not found' }, status: :not_found
+    end
+
     private
 
     def behavior_params

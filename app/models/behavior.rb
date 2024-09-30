@@ -7,4 +7,8 @@ class Behavior
   has_many :scores
 
   validates :description, presence: true
+
+  def latest_score
+    scores.order_by(created_at: :desc).first
+  end
 end
