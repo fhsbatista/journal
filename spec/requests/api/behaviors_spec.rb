@@ -92,4 +92,25 @@ RSpec.describe Api::BehaviorsController, type: :controller do
       expect(response).to have_http_status(:not_found)
     end
   end
+
+  describe 'POST #create_event' do
+    before do
+      Score.create(score: 8.0, description: 'old score', behavior: behavior)
+    end
+
+    it 'creates a new event for the behavior' do
+      expect {
+        post :create_event, params: { id: behavior.id }, format: :json
+      }.to change(Event, :count).by(1)
+
+      expect(response).to have_http_status(:created)
+      expect(JSON.parse(response.body)['score']).to eq(8.0)
+      expect(JSON.parse(response.body)['behavior_id']).to eq(behavior.id.to_s)
+    end
+
+    it 'returns an error if the behavior does not exist' do
+      post :create_event, params: { id: 'invalid' }, format: :json
+      expect(response).to have_http_status(:not_found)
+    end
+  end
 end

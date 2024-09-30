@@ -55,6 +55,19 @@ module Api
       render json: { error: 'Behavior not found' }, status: :not_found
     end
 
+    def create_event
+      behavior = Behavior.find(params[:id])
+      event = Event.new(behavior: behavior)
+
+      if event.save
+        render json: event, status: :created
+      else
+        render json: { errors: event.errors.full_messages }, status: :unprocessable_entity
+      end
+    rescue Mongoid::Errors::DocumentNotFound
+      render json: { error: 'Behavior not found' }, status: :not_found
+    end
+
     private
 
     def behavior_params
