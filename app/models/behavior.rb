@@ -5,6 +5,7 @@ class Behavior
   field :description, type: String
 
   has_many :scores
+  has_many :events
   belongs_to :area
 
   validates :description, presence: true

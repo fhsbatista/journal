@@ -1,4 +1,6 @@
 class Api::AreasController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def index
     areas = Area.all
     render json: areas, status: :ok
