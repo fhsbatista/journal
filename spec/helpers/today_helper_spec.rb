@@ -98,4 +98,34 @@ RSpec.describe TodayHelper, type: :helper do
       expect(helper.previous_7days_scores(date, area)).to eq scores.reverse
     end
   end
+
+  describe '#previous_day_averages' do
+    let(:date) { Date.current }
+    let(:scores) { [1.654, 1.5, 2, 2, 2, 2, 2] }
+
+    before do
+      7.times.each do |i|
+        allow(Area).to receive(:average).with(date - i).and_return(scores[i])
+      end
+    end
+
+    it 'returns array' do
+      expect(helper.previous_7days_averages(date)).to eq scores.reverse
+    end
+  end
+
+  describe '#previous_acumulative_7days_averages' do
+    let(:date) { Date.current }
+    let(:scores) { [1.654, 1.5, 2, 2, 2, 2, 2] }
+
+    before do
+      7.times.each do |i|
+        allow(Area).to receive(:days_average).with(since: date - i, days: 7).and_return(scores[i])
+      end
+    end
+
+    fit 'returns array' do
+      expect(helper.previous_acumulative_7days_averages(date)).to eq scores.reverse
+    end
+  end
 end

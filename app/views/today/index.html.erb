@@ -35,11 +35,13 @@
 <% improved_day_average = average_greater_than_previous_day?(Date.current) %>
 <p style="color: <%= improved_day_average ? 'green' : 'red' %>;">
 Média do dia: <%= Area.average(Date.current) %>
+<%= render 'numbers_list', numbers: previous_7days_averages(Date.current) %>
 </p>
 
 <% improved_7days_average = average_7days_greater_than_previous_day?(Date.current) %>
 <p style="color: <%= improved_7days_average ? 'green' : 'red' %>;">
 Média 7 dias: <%= Area.days_average(since: Date.current, days: 7) %>
+<%= render 'numbers_list', numbers: previous_acumulative_7days_averages(Date.current) %>
 </p>
 
 <script>
