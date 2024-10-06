@@ -35,4 +35,31 @@ RSpec.describe Behavior, type: :model do
       expect(behavior.latest_score).to be_nil
     end
   end
+
+  describe '#performed_at?' do
+    let!(:behavior) { Behavior.create(description: 'Sample Behavior', area_id: area.id) }
+    let!(:score1) { Score.create(score: 5.0, description: 'Good', behavior:) }
+
+    before do
+      Event.create(behavior: behavior)
+    end
+
+    it { expect(behavior.performed_at?(Date.current)).to eq(true) }
+    it { expect(behavior.performed_at?(Date.yesterday)).to eq(false) }
+  end
+
+  fdescribe '#delete_events_at' do
+    let!(:behavior) { Behavior.create(description: 'Sample Behavior', area_id: area.id) }
+    let!(:score1) { Score.create(score: 5.0, description: 'Good', behavior:) }
+
+    it 'destroy all events in given date' do
+      Event.create(behavior: behavior)
+
+      behavior.delete_events_at(Date.current)
+
+      range = Date.current.beginning_of_day..Date.current.end_of_day
+      events = behavior.events.where(created_at: range)
+      expect(events).to be_empty
+    end
+  end
 end

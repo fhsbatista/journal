@@ -1,0 +1,65 @@
+<h1>Hoje - <%= Date.current %></h1>
+
+<% @areas.each do |area| %>
+  <p> <%= area.description %> </p>
+  <table>
+    <thead>
+      <tr>
+        <th>Descrição</th>
+        <th>Score</th>
+        <th>Executado?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% area.behaviors.each do |behavior| %>
+        <tr>
+          <td><%= behavior.description %></td>
+          <td>
+            <% latest_score = behavior.latest_score %>
+            <%= latest_score ? latest_score.score : 'Nenhum score disponível' %>
+          </td>
+          <td>
+            <%= check_box_tag "event_exists_#{behavior.id}", '1', behavior.performed_at?(Date.current), class: 'event-checkbox', data: { behavior_id: behavior.id }, onchange: "toggleEvent(this)" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <p> Total: <%= area.day_score(Date.current) %> </p>
+<% end %>
+<p> Média do dia: <%= Area.average(Date.current) %> </p>
+
+<script>
+  function toggleEvent(checkbox) {
+    const behaviorId = checkbox.dataset.behaviorId.replace(/^["\\]+|["\\]+$/g, '');
+
+
+    if (!checkbox.checked) {
+      fetch(`/behaviors/${behaviorId}/delete_events_today`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        }
+      })
+      .then(response => {
+        if (!response.ok) {
+          console.error('Erro ao deletar os eventos');
+        }
+      });
+    } else {
+      fetch(`/behaviors/${behaviorId}/create_event_today`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        }
+      })
+      .then(response => {
+        if (!response.ok) {
+          console.error('Erro ao criar evento');
+        }
+      });
+    }
+  }
+</script>
