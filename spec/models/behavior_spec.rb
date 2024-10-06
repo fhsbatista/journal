@@ -48,7 +48,7 @@ RSpec.describe Behavior, type: :model do
     it { expect(behavior.performed_at?(Date.yesterday)).to eq(false) }
   end
 
-  fdescribe '#delete_events_at' do
+  describe '#delete_events_at' do
     let!(:behavior) { Behavior.create(description: 'Sample Behavior', area_id: area.id) }
     let!(:score1) { Score.create(score: 5.0, description: 'Good', behavior:) }
 
