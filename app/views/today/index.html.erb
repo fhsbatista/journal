@@ -29,6 +29,11 @@
 <% end %>
 <p> Média do dia: <%= Area.average(Date.current) %> </p>
 
+<% improved = average_greater_than_previous_day?(Date.current) %>
+<p style="color: <%= improved ? 'green' : 'red' %>;">
+ Média 7 dias: <%= Area.days_average(since: Date.current, days: 7) %>
+</p>
+
 <script>
   function toggleEvent(checkbox) {
     const behaviorId = checkbox.dataset.behaviorId.replace(/^["\\]+|["\\]+$/g, '');
