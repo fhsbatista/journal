@@ -20,4 +20,8 @@ module TodayHelper
 
     date_score > date_before_score
   end
+
+  def previous_7days_scores(date, area)
+    7.times.map { |i| area.day_score(date - i) }.reverse
+  end
 end

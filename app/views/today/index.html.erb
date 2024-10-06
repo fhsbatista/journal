@@ -29,6 +29,7 @@
   <p style="color: <%= improved ? 'green' : 'red' %>;">
     Total: <%= area.day_score(Date.current) %>
   </p>
+  <%= render 'numbers_list', numbers: previous_7days_scores(Date.current, area) %>
 <% end %>
 
 <% improved_day_average = average_greater_than_previous_day?(Date.current) %>

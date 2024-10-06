@@ -82,4 +82,20 @@ RSpec.describe TodayHelper, type: :helper do
       end
     end
   end
+
+  describe '#previous_7days_scores' do
+    let(:area) { Area.create(description: 'Sample Area') }
+    let(:date) { Date.current }
+    let(:scores) { [1.654, 1.5, 2, 2, 2, 2, 2] }
+
+    before do
+      7.times.each do |i|
+        allow(area).to receive(:day_score).with(date - i).and_return(scores[i])
+      end
+    end
+
+    it 'returns array' do
+      expect(helper.previous_7days_scores(date, area)).to eq scores.reverse
+    end
+  end
 end
