@@ -20,4 +20,9 @@ class Area
     average = (scores.sum / Area.count.to_f)
     average.round(3)
   end
+
+  def self.days_average(since:, days:)
+    total_averages = (0...days).sum { |i| average(since - i) }
+    (total_averages / days).round(3)
+  end
 end
