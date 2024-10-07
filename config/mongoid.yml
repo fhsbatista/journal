@@ -8,7 +8,6 @@ development:
 production:
   clients:
     default:
-      database: prod_db
       uri: <%= ENV['MONGO_URI'] %>
       options:
         ssl: true
