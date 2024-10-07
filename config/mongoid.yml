@@ -1,12 +1,17 @@
 development:
   clients:
     default:
-      database: dev_db
-      hosts:
-        - localhost:27017
+      uri: <%= ENV['MONGO_URI'] %>
       options:
-        # Adicione opções aqui, se necessário
+        ssl: true
 
+production:
+  clients:
+    default:
+      database: prod_db
+      uri: <%= ENV['MONGO_URI'] %>
+      options:
+        ssl: true
 test:
   clients:
     default:
