@@ -2,6 +2,6 @@ class TodayController < ApplicationController
   include TodayHelper
 
   def index
-    @areas = []
+    @areas = Area.all
   end
 end
