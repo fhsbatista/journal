@@ -124,7 +124,7 @@ RSpec.describe TodayHelper, type: :helper do
       end
     end
 
-    fit 'returns array' do
+    it 'returns array' do
       expect(helper.previous_acumulative_7days_averages(date)).to eq scores.reverse
     end
   end
