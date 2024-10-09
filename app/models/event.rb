@@ -12,6 +12,9 @@ class Event
 
   before_validation :set_score
 
+  index({ created_at: 1 })
+  index({ behavior_id: 1 })
+
   def initialize(attributes = {})
     super(attributes.except(:score))
   end

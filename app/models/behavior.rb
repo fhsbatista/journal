@@ -10,6 +10,8 @@ class Behavior
 
   validates :description, presence: true
 
+  index({ area_id: 1 })
+
   def latest_score
     scores.order_by(created_at: :desc).first
   end
